@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kuber-ss
+spec:
+  selector:
+    matchLabels:
+      env: prod
+  replicas: 4
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        env: prod
+    spec:
+      containers:
+      - name: kuber-app2
+        image: roflmaoinmysoul/otus:v2.0
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: volume
+          mountPath: /cache
+  volumeClaimTemplates:
+  - metadata:
+      name: volume
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: ""
+      resources:
+        requests:
+          storage: 1Gi
