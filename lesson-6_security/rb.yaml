@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: kuber-rb
+  namespace: app
+subjects:
+  - kind: ServiceAccount
+    name: kuber-sa
+    namespace: app
+roleRef:
+  kind: Role
+  name: kuber-role
+  apiGroup: rbac.authorization.k8s.io

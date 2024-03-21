@@ -4,6 +4,7 @@ metadata:
   name: app-kuber
   namespace: app
 spec:
+  serviceAccountName: kuber-sa
   containers:
   - name: app-kuber-container
     image: roflmaoinmysoul/otus:v2.0
